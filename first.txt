@@ -1,0 +1,34 @@
+enable secret enpa55
+line console 0
+password conpa55
+login
+exit
+ip domain-name ccnasecurity.com
+username admin secret adminpa55
+line vty 0 4
+login local
+exit
+crypto key generate rsa
+1024
+
+vlan 5
+exit
+vlan 10
+exit
+vlan 15
+exit
+
+switchport mode access
+switchport access vlan
+
+int fa 0/24
+switchport mode trunk
+switchport trunk native vlan 15
+
+
+int gi 0/2
+switchport mode trunk
+switchport trunk native vlan 15
+
+vlan20
+exit
