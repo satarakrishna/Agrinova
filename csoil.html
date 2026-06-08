@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Soil Management | Knowledge Base</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f1f14;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAV ================= */
+        .navbar {
+            z-index: 1000;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            animation: heroChange 9s infinite;
+            z-index: -2;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .65);
+            z-index: -1;
+        }
+
+        @keyframes heroChange {
+            0% {
+                background-image: url("https://images.unsplash.com/photo-1598515214211-89d3c73ae83b")
+            }
+
+            33% {
+                background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6")
+            }
+
+            66% {
+                background-image: url("https://images.unsplash.com/photo-1605000797499-95a51c5269ae")
+            }
+
+            100% {
+                background-image: url("https://images.unsplash.com/photo-1598515214211-89d3c73ae83b")
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            opacity: .9;
+        }
+
+        /* ================= MAIN ================= */
+        .main-section {
+            padding: 120px 0;
+        }
+
+        /* LEFT CONTENT */
+        .content-box {
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(16px);
+            padding: 70px;
+            border-radius: 32px;
+        }
+
+        .section-title {
+            color: #7CFC90;
+            font-weight: 700;
+            margin-top: 45px;
+        }
+
+        .content-box p,
+        .content-box li {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        /* RIGHT IMAGES */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 35px 80px rgba(0, 0, 0, .6);
+            animation: imageFloat 7s ease-in-out infinite;
+        }
+
+        .image-grid img:nth-child(even) {
+            animation-delay: 3.5s;
+        }
+
+        /* LOOP MOTION */
+        @keyframes imageFloat {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-40px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+        /* BUTTON */
+        .btn-custom {
+            background: #2e7d32;
+            color: white;
+            padding: 16px 55px;
+            border-radius: 40px;
+            font-size: 1.15rem;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+        <div class="container-fluid">
+            <img src="icon.png" width="40">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Knowledge Base</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <h1>Soil Management</h1>
+            <p>Scientific foundation for sustainable and climate-resilient agriculture</p>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <section class="main-section">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+
+                <!-- LEFT -->
+                <div class="col-lg-6">
+                    <div class="content-box">
+
+                        <h3 class="section-title">Introduction</h3>
+                        <p>
+                            Soil management focuses on preserving soil fertility, enhancing biological
+                            activity, and ensuring long-term agricultural productivity. Healthy soil
+                            is essential for food security and ecosystem balance.
+                        </p>
+
+                        <h3 class="section-title">Soil Components</h3>
+                        <ul>
+                            <li>Mineral particles (sand, silt, clay)</li>
+                            <li>Organic matter</li>
+                            <li>Soil water and air</li>
+                            <li>Microorganisms</li>
+                        </ul>
+
+                        <h3 class="section-title">Major Problems</h3>
+                        <ul>
+                            <li>Soil erosion</li>
+                            <li>Nutrient depletion</li>
+                            <li>Salinity and alkalinity</li>
+                            <li>Loss of soil biodiversity</li>
+                        </ul>
+
+                        <h3 class="section-title">Sustainable Practices</h3>
+                        <ul>
+                            <li>Crop rotation</li>
+                            <li>Organic manure usage</li>
+                            <li>Precision irrigation</li>
+                            <li>Reduced tillage</li>
+                        </ul>
+
+                        <h3 class="section-title">Technology Role</h3>
+                        <p>
+                            GIS mapping, remote sensing, and IoT-based soil sensors enable real-time
+                            soil analysis, helping farmers optimize fertilizer usage and improve yields.
+                        </p>
+
+                        <button class="btn-custom mt-4">Back to Knowledge Base</button>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-lg-6">
+                    <div class="image-grid">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449">
+                        <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b">
+                        <img src="https://images.unsplash.com/photo-1524593119771-df45c8a22f72">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

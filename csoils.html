@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soil | Samrt Agriculture</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #eef5ec, #ffffff);
+            overflow-x: hidden;
+        }
+
+        /* HERO */
+        /* FORCE ALL TEXT INSIDE HERO TO WHITE */
+        .hero,
+        .hero * {
+            color: #ffffff !important;
+        }
+
+        /* Strong contrast for readability */
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Make text pop */
+        .hero {
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3') center/cover no-repeat;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            /* horizontal center */
+            align-items: center;
+            /* vertical center */
+            text-align: center;
+            /* text alignment */
+        }
+
+        /* HERO TEXT ANIMATION */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff !important;
+            text-align: center;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroFadeUp 1.5s ease forwards;
+        }
+
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff !important;
+            text-align: center;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+
+            opacity: 0;
+            transform: translateY(-60px);
+            /* start above */
+            animation: heroDrop 1.4s ease forwards;
+        }
+
+        @keyframes heroDrop {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+                /* top */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* center */
+            }
+        }
+
+
+
+        /* INFO CARDS */
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* PROGRESS BARS */
+        .bar {
+            height: 20px;
+            border-radius: 10px;
+            background: #ddd;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 10px;
+            transition: width 2s ease;
+        }
+
+        .n {
+            background: #4caf50;
+        }
+
+        .p {
+            background: #ff9800;
+        }
+
+        .k {
+            background: #2196f3;
+        }
+
+        /* SCROLL FADE */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Back */
+        footer a:hover {
+            color: #0b9af9 !important;
+            transition: 0.3s;
+        }
+
+        footer a {
+            text-decoration: none !important;
+            color: #ffffff;
+        }
+
+        .back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+
+            opacity: 0;
+            /* hidden initially */
+            pointer-events: none;
+            /* not clickable */
+        }
+
+        .back.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back:hover {
+            background: #198754;
+            transform: scale(1.08);
+        }
+        .navbar-brand {
+    white-space: nowrap;     /* prevents text wrapping */
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.2rem;   /* slightly smaller on mobile */
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <a href="/" class="back">⬅ Back</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Understanding Soil pH & Nutrient Balance</h1>
+            <p>Healthy soil = healthy crops 🌱</p>
+        </div>
+    </section>
+
+    <div class="container my-5">
+
+        <!-- SECTION 1 -->
+        <div class="row g-4 reveal">
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h4>🧪 What is Soil pH?</h4>
+                    <p>Soil pH measures acidity or alkalinity. It controls nutrient availability and microbial activity.
+                    </p>
+                    <ul>
+                        <li><b>&lt;6.5</b> → Acidic soil</li>
+                        <li><b>6.5–7.5</b> → Ideal for most crops</li>
+                        <li><b>&gt;7.5</b> → Alkaline soil</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h4>🌾 Why Nutrients Matter</h4>
+                    <p>Plants need three primary nutrients for growth:</p>
+                    <p><b>N</b> → Leaf growth</p>
+                    <p><b>P</b> → Root & flower development</p>
+                    <p><b>K</b> → Disease resistance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="my-5 reveal">
+            <h3 class="text-center mb-4">Ideal Nutrient Levels</h3>
+
+            <p class="d-flex justify-content-between">
+                <span>Nitrogen</span>
+                <strong class="text-success">75%</strong>
+            </p>
+            <div class="bar mb-3">
+                <div class="bar-fill n" id="nBar"></div>
+            </div>
+
+            <p class="d-flex justify-content-between">
+                <span>Phosphorus</span>
+                <strong class="text-warning">60%</strong>
+            </p>
+            <div class="bar mb-3">
+                <div class="bar-fill p" id="pBar"></div>
+            </div>
+
+            <p class="d-flex justify-content-between">
+                <span>Potassium</span>
+                <strong class="text-primary">70%</strong>
+            </p>
+            <div class="bar">
+                <div class="bar-fill k" id="kBar"></div>
+            </div>
+        </div>
+
+
+
+        <!-- SECTION 3 -->
+        <div class="row g-4 reveal">
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h4>⚠ Effects of Imbalance</h4>
+                    <ul>
+                        <li>Low Nitrogen → Yellow leaves</li>
+                        <li>Low Phosphorus → Weak roots</li>
+                        <li>Low Potassium → Poor resistance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h4>💡 Solutions</h4>
+                    <ul>
+                        <li>Add lime to raise pH</li>
+                        <li>Add sulfur to lower pH</li>
+                        <li>Use organic compost</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="/soil" class="btn btn-success btn-lg">
+                <i class="bi bi-cloud-sun-fill me-2"></i>
+                Soil Health & Fertility
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            const trigger = window.innerHeight * 0.85;
+            reveals.forEach(r => {
+                if (r.getBoundingClientRect().top < trigger) r.classList.add('active');
+            });
+        });
+
+        window.onload = () => {
+            document.getElementById("nBar").style.width = "75%";
+            document.getElementById("pBar").style.width = "60%";
+            document.getElementById("kBar").style.width = "70%";
+        };
+
+        function goBack() {
+            if (window.history.length > 1 && document.referrer !== "") {
+                window.history.back(); // return to previous page
+            } else {
+                window.location.href = "/"; // fallback
+            }
+        }
+
+        document.querySelector('.back').addEventListener('click', goBack);
+
+        /* ---------- SHOW BUTTON AFTER HERO ---------- */
+        const backBtn = document.querySelector('.back');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetHeight;
+
+            if (window.scrollY > heroBottom - 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+    </script>
+    <footer style="background:#198754; color:#ffffff; margin-top:60px;">
+        <div class="container-fluid pt-5 pb-4 px-5">
+
+            <div class="row">
+
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight:600;">Smart Agriculture System</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Integrating technology with agriculture to provide farmers with
+                        intelligent crop recommendations, weather insights, and soil analysis
+                        for better productivity and sustainable farming.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 style="font-weight:600;">Quick Links</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                         <li><a href="/" class="text-light text-primary">Home</a></li>
+                        <li><a href="/about1" class="text-light text-primary">Crop Recommendation</a></li>
+                        <li><a href="/weather" class="text-light text-primary">Weather Forecast</a></li>
+                        <li><a href="/soil" class="text-light text-primary">Soil Health</a></li>
+                        <li><a href="/knowledge" class="text-light text-primary">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Our Services</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li>AI Crop Advisory</li>
+                        <li>7-Day Weather Forecast</li>
+                        <li>Soil Quality Insights</li>
+                        <li>Farming Tips & Alerts</li>
+                        <li>Location-Based Guidance</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Contact</h5>
+                    <p style="font-size:14px; margin-bottom:6px;">📍 India</p>
+                    <p style="font-size:14px; margin-bottom:6px;">📧 support@smartagri.com</p>
+                    <p style="font-size:14px;">📞 +91 98765 43210</p>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <div class="text-center pb-3">
+                © 2026 Smart Agriculture System | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

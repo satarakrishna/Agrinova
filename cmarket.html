@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Prices | Smart Agriculture</title>
+    <link rel="icon" type="icon/png" href="/static/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('/static/cprice1.png') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            color: #198754;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+         .back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+
+            opacity: 0;
+            /* hidden initially */
+            pointer-events: none;
+            /* not clickable */
+        }
+
+        .back.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back:hover {
+            background: #198754;
+            transform: scale(1.08);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box i {
+            font-size: 3rem;
+            color: #198754;
+            margin-bottom: 15px;
+        }
+
+        .info-box h5 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-box p {
+            font-size: 0.95rem;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: #198754;
+            color: #fff;
+            padding: 40px 0;
+        }
+        footer a:hover {
+            color: #0b9af9 !important;
+            transition: 0.3s;
+        }
+
+        footer a {
+            text-decoration: none !important;
+            color: #ffffff;
+        }
+
+        /* Go to Top Button */
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background: #198754;
+            color: white;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: none;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #topBtn:hover {
+            background: #0f5e37;
+            transform: scale(1.1);
+        }
+        .navbar-brand {
+    white-space: nowrap;     /* prevents text wrapping */
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.2rem;   /* slightly smaller on mobile */
+    }
+}
+.dropdown-menu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@media (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dropdown-item:hover {
+    background-color: #198754;  /* Bootstrap success green */
+    color: #ffffff;
+    padding-left: 18px;         /* slight slide effect */
+}
+
+    </style>
+</head>
+
+<body>
+<a href="/" class="back">⬅ Back</a>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center flex-shrink-0" href="#">
+                <img src="/static/icon.png" width="42" height="42" class="me-2">
+                <span class="brand-text">AgriNova</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="/">
+                            <i class="bi bi-house-door-fill me-1"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="bi bi-flower1 me-1"></i> Crop Recommendation
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/about1">Monsoon</a></li>
+                            <li><a class="dropdown-item" href="/about2">Winter</a></li>
+                            <li><a class="dropdown-item" href="/about3">Summer</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/weather">
+                            <i class="bi bi-cloud-sun-fill me-1"></i> Weather
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/soil">
+                            <i class="bi bi-layers-fill me-1"></i> Soil Health
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/knowledge">
+                            <i class="bi bi-book-fill me-1"></i> Knowledge Base
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero animate__animated animate__fadeIn">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Market Prices</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Get the latest crop prices from local
+                and national markets.</p>
+        </div>
+    </section>
+
+    <!-- MARKET PRICES INFO -->
+    <section class="section reveal">
+        <h2>Current Market Prices</h2>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="info-box animate__animated animate__fadeInUp">
+                        <i class="bi bi-graph-up"></i>
+                        <h5>Wheat</h5>
+                        <p>₹2200 per quintal (Local Market)</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box animate__animated animate__fadeInUp animate__delay-1s">
+                        <i class="bi bi-graph-up"></i>
+                        <h5>Rice</h5>
+                        <p>₹2500 per quintal (Local Market)</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box animate__animated animate__fadeInUp animate__delay-2s">
+                        <i class="bi bi-graph-up"></i>
+                        <h5>Maize</h5>
+                        <p>₹2000 per quintal (Local Market)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS FOR FARMERS -->
+    <section class="section bg-light reveal">
+        <h2>Tips for Farmers</h2>
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Monitor prices daily for best selling opportunities.</li>
+                        <li>Compare local and national market prices before selling.</li>
+                        <li>Use storage techniques to reduce losses.</li>
+                        <li>Consider cooperative selling to get better rates.</li>
+                        <li>Stay updated with government MSP announcements.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="cprice2.png" alt="Market Tips" class="img-fluid animate__animated animate__fadeInRight">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section reveal">
+        <h2>Benefits of Market Insights</h2>
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3">
+                    <div class="info-box">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <h5>Maximize Profit</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <h5>Plan Harvest</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <h5>Reduce Losses</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <h5>Better Decisions</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background:#198754; color:#ffffff; margin-top:60px;">
+        <div class="container pt-5 pb-4">
+            <div class="row">
+
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight:600;">Smart Agriculture System</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Integrating technology with agriculture to provide farmers with
+                        intelligent crop recommendations, weather insights, and soil analysis
+                        for better productivity and sustainable farming.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 style="font-weight:600;">Quick Links</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li><a href="/" class="text-light text-primary">Home</a></li>
+                        <li><a href="/about1" class="text-light text-primary">Crop Recommendation</a></li>
+                        <li><a href="/weather" class="text-light text-primary">Weather Forecast</a></li>
+                        <li><a href="/soil" class="text-light text-primary">Soil Health</a></li>
+                        <li><a href="/knowledge" class="text-light text-primary">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Our Services</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li>AI Crop Advisory</li>
+                        <li>7-Day Weather Forecast</li>
+                        <li>Soil Quality Insights</li>
+                        <li>Farming Tips & Alerts</li>
+                        <li>Location-Based Guidance</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Contact</h5>
+                    <p style="font-size:14px; margin-bottom:6px;">📍 India</p>
+                    <p style="font-size:14px; margin-bottom:6px;">📧 support@smartagri.com</p>
+                    <p style="font-size:14px;">📞 +91 98765 43210</p>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <div class="text-center pb-3">
+                © 2026 Smart Agriculture System | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- GO TO TOP BUTTON -->
+    <button onclick="scrollToTop()" id="topBtn" title="Go to top">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        function scrollReveal() {
+            const triggerBottom = window.innerHeight * 0.85;
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < triggerBottom) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', scrollReveal);
+        scrollReveal();
+
+        // Go to Top Button
+        const topBtn = document.getElementById("topBtn");
+        window.addEventListener("scroll", () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+         function goBack() {
+            if (window.history.length > 1 && document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "/";
+            }
+        }
+
+        // Show back button AFTER hero section
+        const backBtn = document.querySelector('.back');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetHeight;
+
+            if (window.scrollY > heroBottom - 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

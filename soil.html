@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Soil Health | Smart Agriculture System</title>
+    <link rel="icon" type="icon/png" href="/static/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+    <style>
+        body {
+            background-color: #deeee2;
+        }
+
+        .section-title {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .result-card {
+            display: none;
+        }
+
+        .rounded-circle {
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        footer a:hover {
+            color: #0b9af9 !important;
+            transition: 0.3s;
+        }
+
+        footer a {
+            text-decoration: none !important;
+            color: #ffffff;
+        }
+        .navbar-brand {
+    white-space: nowrap;     /* prevents text wrapping */
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.2rem;   /* slightly smaller on mobile */
+    }
+}
+.dropdown-menu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@media (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dropdown-item:hover {
+    background-color: #198754;  /* Bootstrap success green */
+    color: #ffffff;
+    padding-left: 18px;         /* slight slide effect */
+}
+
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+
+
+
+        <div class="container-fluid">
+           <a class="navbar-brand d-flex align-items-center flex-shrink-0" href="#">
+                <img src="/static/icon.png" width="42" height="42" class="me-2">
+                <span class="brand-text">AgriNova</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door-fill me-1"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="bi bi-flower1 me-1"></i> Crop Recommendation
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/about1">Monsoon</a></li>
+                            <li><a class="dropdown-item" href="/about2">Winter</a></li>
+                            <li><a class="dropdown-item" href="/about3">Summer</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/weather">
+                            <i class="bi bi-cloud-sun-fill me-1"></i> Weather
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="/soil">
+                            <i class="bi bi-layers-fill me-1"></i> Soil Health
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/knowledge">
+                            <i class="bi bi-book-fill me-1"></i> Knowledge Base
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-secondary text-white text-center p-3">
+        <div class="container">
+            <h1>Understand Your Soil, Grow Better</h1>
+            <p class="lead">Analyze nutrients, pH, and moisture to boost productivity.</p>
+        </div>
+    </section>
+    <div class="row text-center mt-5 my-5 fade-section show">
+        <div class="col-md-3"><img src="/static/soilb.png" class="rounded-circle img-fluid" width="120">
+            <h6>pH Value</h6>
+        </div>
+        <div class="col-md-3"><img src="/static/soilb1.png" class="rounded-circle img-fluid" width="120">
+            <h6>Nitrogen</h6>
+        </div>
+        <div class="col-md-3"><img src="/static/soilb2.png" class="rounded-circle img-fluid" width="120">
+            <h6>Phosphorus</h6>
+        </div>
+        <div class="col-md-3"><img src="/static/soilb3.png" class="rounded-circle img-fluid" width="120">
+            <h6>Potassium</h6>
+        </div>
+    </div>
+
+    <div class="text-bg-secondary py-3"> </div>
+
+    <div class="container my-5">
+
+        <!-- Page Title -->
+        <div class="text-center mb-4">
+            <h2 class="section-title">Soil Health Analysis</h2>
+            <p>Analyze soil nutrients and get improvement recommendations</p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Soil Input Form -->
+            <div class="col-md-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="section-title mb-3">Soil Input Details</h5>
+
+                        <form id="soilForm">
+                            <div class="mb-3">
+                                <label class="form-label">Soil Type</label>
+                                <select class="form-select" id="soilType" required>
+                                    <option value="">Select</option>
+                                    <option>Loamy-(दोमट मिट्टी)</option>
+                                    <option>Sandy-(रेतीली मिट्टी)</option>
+                                    <option>Clay-(चिकनी मिट्टी)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">pH Value</label>
+                                <input type="number" step="0.1" class="form-control" id="ph" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nitrogen (N)</label>
+                                <input type="number" class="form-control" id="n" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Phosphorus (P)</label>
+                                <input type="number" class="form-control" id="p" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Potassium (K)</label>
+                                <input type="number" class="form-control" id="k" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">
+                                Analyze Soil
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div class="col-md-7">
+                <div class="card shadow-sm result-card" id="resultCard">
+                    <div class="card-body">
+
+                        <h5 class="section-title mb-3">Soil Health Result</h5>
+
+                        <p><strong>Soil Quality:</strong> <span id="quality"></span></p>
+                        <p><strong>pH Status:</strong> <span id="phStatus"></span></p>
+
+                        <hr>
+
+                        <h6 class="section-title">Nutrient Levels</h6>
+
+                        <label>Nitrogen (<span id="nPercent"></span>)</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-success" id="nBar"></div>
+                        </div>
+
+                        <label>Phosphorus (<span id="pPercent"></span>)</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-warning" id="pBar"></div>
+                        </div>
+
+                        <label>Potassium (<span id="kPercent"></span>)</label>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-info" id="kBar"></div>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="section-title">Recommended Crops</h6>
+                        <p id="crops"></p>
+
+                        <h6 class="section-title">Soil Improvement Tips</h6>
+                        <ul>
+                            <li>Add organic manure</li>
+                            <li>Maintain balanced fertilizer usage</li>
+                            <li>Regular soil testing</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("soilForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const ph = parseFloat(document.getElementById("ph").value);
+            const n = parseInt(document.getElementById("n").value);
+            const p = parseInt(document.getElementById("p").value);
+            const k = parseInt(document.getElementById("k").value);
+
+            // Convert nutrient values into % (max assumed = 100)
+            const nPercent = Math.min(n, 100);
+            const pPercent = Math.min(p, 100);
+            const kPercent = Math.min(k, 100);
+
+            // Show percentages
+            document.getElementById("nPercent").innerText = nPercent + "%";
+            document.getElementById("pPercent").innerText = pPercent + "%";
+            document.getElementById("kPercent").innerText = kPercent + "%";
+
+            // Animate bars
+            document.getElementById("nBar").style.width = nPercent + "%";
+            document.getElementById("pBar").style.width = pPercent + "%";
+            document.getElementById("kBar").style.width = kPercent + "%";
+
+            // pH Status
+            let phStatus = ph < 6.5 ? "Acidic" : ph > 7.5 ? "Alkaline" : "Neutral";
+            document.getElementById("phStatus").innerText = phStatus;
+
+            // Soil Quality Logic
+            let quality = (n > 60 && p > 50 && k > 50) ? "Good" :
+                (n > 30 && p > 25 && k > 25) ? "Moderate" : "Poor";
+            document.getElementById("quality").innerText = quality;
+
+            // 🌾 SMART CROP RECOMMENDATION
+            let crops = [];
+
+            if (phStatus === "Neutral" && n > 50 && p > 40 && k > 40) {
+                crops = ["Wheat", "Maize", "Soybean", "Cotton"];
+            }
+            else if (phStatus === "Acidic") {
+                crops = ["Rice", "Potato", "Tea", "Sugarcane"];
+            }
+            else if (phStatus === "Alkaline") {
+                crops = ["Barley", "Mustard", "Cotton"];
+            }
+
+            // Low nutrient special crops
+            if (n < 30) crops.push("Pulses (improves nitrogen)");
+            if (p < 25) crops.push("Groundnut");
+            if (k < 25) crops.push("Banana");
+
+            document.getElementById("crops").innerText = crops.join(", ");
+
+            // Show result card
+            document.getElementById("resultCard").style.display = "block";
+        });
+    </script>
+
+    <footer style="background:#198754; color:#ffffff; margin-top:60px;">
+        <div class="container pt-5 pb-4">
+            <div class="row">
+
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight:600;">Smart Agriculture System</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Integrating technology with agriculture to provide farmers with
+                        intelligent crop recommendations, weather insights, and soil analysis
+                        for better productivity and sustainable farming.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 style="font-weight:600;">Quick Links</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                         <li><a href="/" class="text-light text-primary">Home</a></li>
+                        <li><a href="/about1" class="text-light text-primary">Crop Recommendation</a></li>
+                        <li><a href="/weather" class="text-light text-primary">Weather Forecast</a></li>
+                        <li><a href="/soil" class="text-light text-primary">Soil Health</a></li>
+                        <li><a href="/knowledge" class="text-light text-primary">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Our Services</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li>AI Crop Advisory</li>
+                        <li>7-Day Weather Forecast</li>
+                        <li>Soil Quality Insights</li>
+                        <li>Farming Tips & Alerts</li>
+                        <li>Location-Based Guidance</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Contact</h5>
+                    <p style="font-size:14px; margin-bottom:6px;">📍 India</p>
+                    <p style="font-size:14px; margin-bottom:6px;">📧 support@smartagri.com</p>
+                    <p style="font-size:14px;">📞 +91 98765 43210</p>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <div class="text-center pb-3">
+                © 2026 Smart Agriculture System | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+    <!-- GO TO TOP BUTTON -->
+    <button onclick="scrollToTop()" id="topBtn" title="Go to top">↑</button>
+
+
+    <style>
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background: #00b894;
+            color: white;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: none;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #topBtn:hover {
+            background: #019875;
+            transform: scale(1.1);
+        }
+    </style>
+
+
+    <script>
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

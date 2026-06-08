@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fungal Threats | Smart Agriculture</title>
+    <link rel="icon" type="icon/png" href="/static/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('/static/cfungal1.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: #198754;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box i {
+            font-size: 3rem;
+            color: #198754;
+            margin-bottom: 15px;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+          .back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+
+            opacity: 0;
+            /* hidden initially */
+            pointer-events: none;
+            /* not clickable */
+        }
+
+        .back.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back:hover {
+            background: #198754;
+            transform: scale(1.08);
+        }
+
+        /* Go Top */
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 12px 16px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        footer a:hover {
+            color: #0b9af9 !important;
+            transition: 0.3s;
+        }
+
+        footer a {
+            text-decoration: none !important;
+            color: #ffffff;
+        }
+        .navbar-brand {
+    white-space: nowrap;     /* prevents text wrapping */
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.2rem;   /* slightly smaller on mobile */
+    }
+}
+.dropdown-menu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@media (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dropdown-item:hover {
+    background-color: #198754;  /* Bootstrap success green */
+    color: #ffffff;
+    padding-left: 18px;         /* slight slide effect */
+}
+
+    </style>
+</head>
+
+<body>
+    <a href="/" class="back">⬅ Back</a>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+
+        <div class="container-fluid">
+           <a class="navbar-brand d-flex align-items-center flex-shrink-0" href="#">
+                <img src="/static/icon.png" width="42" height="42" class="me-2">
+                <span class="brand-text">AgriNova</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="/">
+                            <i class="bi bi-house-door-fill me-1"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="bi bi-flower1 me-1"></i> Crop Recommendation
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/about1">Monsoon</a></li>
+                            <li><a class="dropdown-item" href="/about2">Winter</a></li>
+                            <li><a class="dropdown-item" href="/about3">Summer</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/weather">
+                            <i class="bi bi-cloud-sun-fill me-1"></i> Weather
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/soil">
+                            <i class="bi bi-layers-fill me-1"></i> Soil Health
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/knowledge">
+                            <i class="bi bi-book-fill me-1"></i> Knowledge Base
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- HERO -->
+    <section class="hero animate__animated animate__fadeIn">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Fungal Threats</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                Identify, prevent, and manage fungal diseases to protect crop health.
+            </p>
+        </div>
+    </section>
+
+    <!-- COMMON FUNGAL DISEASES -->
+    <section class="section reveal">
+        <h2>Common Fungal Diseases</h2>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="bi bi-circle-fill"></i>
+                        <h5>Powdery Mildew</h5>
+                        <p>White powdery coating on leaves reducing photosynthesis.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="bi bi-cloud-drizzle-fill"></i>
+                        <h5>Leaf Rust</h5>
+                        <p>Orange/brown spots on leaves leading to reduced yield.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="bi bi-droplet-half"></i>
+                        <h5>Blight</h5>
+                        <p>Rapid leaf browning and plant death due to fungal infection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETECTION & CONTROL -->
+    <section class="section bg-light reveal">
+        <h2>Detection & Control Measures</h2>
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Regular leaf inspections for early spots or discoloration.</li>
+                        <li>Maintain proper air circulation between plants.</li>
+                        <li>Avoid overwatering and waterlogging.</li>
+                        <li>Use certified disease-free seeds.</li>
+                        <li>Apply fungicides when early symptoms appear.</li>
+                        <li>Remove infected plants immediately.</li>
+                        <li>Practice crop rotation to break fungal life cycles.</li>
+                        <li>Use fungus-resistant crop varieties.</li>
+                        <li>Maintain proper plant spacing to improve airflow.</li>
+                        <li>Avoid overhead irrigation; use drip irrigation instead.</li>
+                        <li>Remove and destroy crop residues after harvest.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="cfungal2.png" class="img-fluid rounded animate__animated animate__fadeInRight">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section reveal">
+        <h2>Why Early Detection Matters</h2>
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-3">
+                    <div class="info-box"><i class="bi bi-shield-check"></i>
+                        <h5>Crop Protection</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box"><i class="bi bi-cash-coin"></i>
+                        <h5>Reduce Loss</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box"><i class="bi bi-clock-history"></i>
+                        <h5>Timely Action</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-box"><i class="bi bi-graph-up"></i>
+                        <h5>Better Yield</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button onclick="scrollToTop()" id="topBtn">↑</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            const trigger = window.innerHeight * 0.85;
+            reveals.forEach(r => { if (r.getBoundingClientRect().top < trigger) r.classList.add('active'); });
+
+            document.getElementById("topBtn").style.display =
+                (document.documentElement.scrollTop > 200) ? "block" : "none";
+        });
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+         function goBack() {
+            if (window.history.length > 1 && document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "/";
+            }
+        }
+
+        // Show back button AFTER hero section
+        const backBtn = document.querySelector('.back');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetHeight;
+
+            if (window.scrollY > heroBottom - 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+    </script>
+    <footer style="background:#198754; color:#ffffff; margin-top:60px;">
+        <div class="container pt-5 pb-4">
+            <div class="row">
+
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight:600;">Smart Agriculture System</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Integrating technology with agriculture to provide farmers with
+                        intelligent crop recommendations, weather insights, and soil analysis
+                        for better productivity and sustainable farming.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 style="font-weight:600;">Quick Links</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li><a href="/" class="text-light text-primary">Home</a></li>
+                        <li><a href="/about1" class="text-light text-primary">Crop Recommendation</a></li>
+                        <li><a href="/weather" class="text-light text-primary">Weather Forecast</a></li>
+                        <li><a href="/soil" class="text-light text-primary">Soil Health</a></li>
+                        <li><a href="/knowledge" class="text-light text-primary">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Our Services</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li>AI Crop Advisory</li>
+                        <li>7-Day Weather Forecast</li>
+                        <li>Soil Quality Insights</li>
+                        <li>Farming Tips & Alerts</li>
+                        <li>Location-Based Guidance</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Contact</h5>
+                    <p style="font-size:14px; margin-bottom:6px;">📍 India</p>
+                    <p style="font-size:14px; margin-bottom:6px;">📧 support@smartagri.com</p>
+                    <p style="font-size:14px;">📞 +91 98765 43210</p>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <div class="text-center pb-3">
+                © 2026 Smart Agriculture System | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

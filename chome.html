@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crops | Smart Agriculture </title>
+    <link rel="icon" type="icon/png" href="/static/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #f4f9f4, #ffffff);
+            overflow-x: hidden;
+        }
+
+        /* HERO */
+        .hero {
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* DARK OVERLAY FOR READABILITY */
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            /* darker for strong contrast */
+        }
+
+        /* HERO TEXT CONTAINER */
+        .hero-content {
+            position: relative;
+            color: #ffffff;
+            /* FORCE WHITE */
+            z-index: 2;
+            animation: fadeDown 1.5s ease;
+        }
+
+        /* MAIN TITLE */
+        .hero-content h1 {
+            color: #ffffff !important;
+            /* force white */
+            font-weight: 800;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+            /* strong glow */
+        }
+
+        /* SUBTEXT */
+        .hero-content p {
+            color: #ffffff !important;
+            /* force white */
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* INFO BOX */
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+
+        /* ===== NEW PROGRESS BAR STYLE ===== */
+        .progress-wrap {
+            margin-bottom: 30px;
+        }
+
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 22px;
+            background: #e0e0e0;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 30px;
+            transition: width 2s ease;
+        }
+
+        /* COLORS */
+        .temp {
+            background: #4caf50;
+        }
+
+        .water {
+            background: #ff9800;
+        }
+
+        .sun {
+            background: #2196f3;
+        }
+
+        .temp-text {
+            color: #4caf50;
+        }
+
+        .water-text {
+            color: #ff9800;
+        }
+
+        .sun-text {
+            color: #2196f3;
+        }
+
+        /* PROGRESS BARS */
+
+
+        /* TIMELINE */
+        .timeline {
+            border-left: 4px solid #2e7d32;
+            padding-left: 20px;
+        }
+
+        .timeline div {
+            margin-bottom: 20px;
+        }
+
+        /* SCROLL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+
+            opacity: 0;
+            /* hidden initially */
+            pointer-events: none;
+            /* not clickable */
+        }
+
+        .back.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back:hover {
+            background: #198754;
+            transform: scale(1.08);
+        }
+        footer a:hover {
+            color: #0b9af9 !important;
+            transition: 0.3s;
+        }
+
+        footer a {
+            text-decoration: none !important;
+            color: #ffffff;
+        }
+        .navbar-brand {
+    white-space: nowrap;     /* prevents text wrapping */
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.2rem;   /* slightly smaller on mobile */
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <a href="/" class="back">⬅ Back</a>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Why Wheat Thrives in Rabi Season</h1>
+            <p>Cool weather + ideal soil = high yield 🌾</p>
+        </div>
+    </section>
+
+    <div class="container my-5">
+
+        <div class="row g-4 reveal">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <h4>🌡 Ideal Temperature</h4>
+                    <p>Best range: <b>10°C–25°C</b></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <h4>🌱 Soil Requirement</h4>
+                    <p>Loamy, well-drained soil with organic matter.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEY GROWTH FACTORS -->
+        <div class="my-5 reveal">
+            <h3 class="text-center mb-4">Key Growth Factor Suitability</h3>
+
+            <div class="progress-wrap">
+                <div class="progress-title">
+                    <span>Temperature Suitability</span>
+                    <span class="temp-text" id="pt">90%</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill temp" id="t"></div>
+                </div>
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-title">
+                    <span>Water Availability</span>
+                    <span class="water-text" id="pw">75%</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill water" id="w"></div>
+                </div>
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-title">
+                    <span>Sunlight Exposure</span>
+                    <span class="sun-text" id="ps">80%</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill sun" id="s"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row g-4 reveal">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <h4>📅 Rabi Timeline</h4>
+                    <div class="timeline">
+                        <div><b>Oct–Nov:</b> Sowing</div>
+                        <div><b>Dec–Jan:</b> Growth</div>
+                        <div><b>Feb:</b> Flowering</div>
+                        <div><b>Mar–Apr:</b> Harvest</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <h4>🚜 Benefits</h4>
+                    <ul>
+                        <li>Lower pest attacks</li>
+                        <li>Better grain quality</li>
+                        <li>Higher yield</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="/about2" class="btn btn-success btn-lg">
+                <i class="bi bi-cloud-sun-fill me-2"></i>
+                Explore Rabi Crop Guide
+            </a>
+        </div>
+    </div>
+
+    <footer style="background:#198754; color:#ffffff; margin-top:60px;">
+        <div class="container-fluid pt-5 pb-4 px-5">
+
+            <div class="row">
+
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight:600;">Smart Agriculture System</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Integrating technology with agriculture to provide farmers with
+                        intelligent crop recommendations, weather insights, and soil analysis
+                        for better productivity and sustainable farming.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 style="font-weight:600;">Quick Links</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li><a href="/" class="text-light text-primary">Home</a></li>
+                        <li><a href="/about1" class="text-light text-primary">Crop Recommendation</a></li>
+                        <li><a href="/weather" class="text-light text-primary">Weather Forecast</a></li>
+                        <li><a href="/soil" class="text-light text-primary">Soil Health</a></li>
+                        <li><a href="/knowledge" class="text-light text-primary">Knowledge Base</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Our Services</h5>
+                    <ul class="list-unstyled" style="font-size:14px;">
+                        <li>AI Crop Advisory</li>
+                        <li>7-Day Weather Forecast</li>
+                        <li>Soil Quality Insights</li>
+                        <li>Farming Tips & Alerts</li>
+                        <li>Location-Based Guidance</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5 style="font-weight:600;">Contact</h5>
+                    <p style="font-size:14px; margin-bottom:6px;">📍 India</p>
+                    <p style="font-size:14px; margin-bottom:6px;">📧 support@smartagri.com</p>
+                    <p style="font-size:14px;">📞 +91 98765 43210</p>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <div class="text-center pb-3">
+                © 2026 Smart Agriculture System | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            const trigger = window.innerHeight * 0.85;
+            reveals.forEach(r => {
+                if (r.getBoundingClientRect().top < trigger) {
+                    r.classList.add('active');
+                }
+            });
+        });
+
+        window.onload = () => {
+            document.getElementById("t").style.width = "90%";
+            document.getElementById("w").style.width = "75%";
+            document.getElementById("s").style.width = "80%";
+
+            document.getElementById("pt").innerText = "90%";
+            document.getElementById("pw").innerText = "75%";
+            document.getElementById("ps").innerText = "80%";
+        };
+
+         function goBack() {
+            if (window.history.length > 1 && document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "/";
+            }
+        }
+
+        // Show back button AFTER hero section
+        const backBtn = document.querySelector('.back');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetHeight;
+
+            if (window.scrollY > heroBottom - 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
